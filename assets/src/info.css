@@ -1,0 +1,38 @@
+.menu{
+    width: 100%; 
+    margin-top: 20px;
+    background-color: #fff; 
+    padding: 10px 10px 30px 10px; 
+    border-radius: 10px;
+    text-align: justify;
+}
+
+.extra{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    justify-items: center;
+    align-content: center;
+    gap: 20px;
+}
+
+.info{
+    width: 100%;
+    text-align: center;
+}
+
+.link{
+    text-decoration: none;
+    width: 100%; 
+    margin-top: 20px;
+    background-color: #fff; 
+    padding: 10px 10px; 
+    border-radius: 10px;
+    text-align: center;
+}
+
+.text{
+    color: #2763FF;
+    font-weight: 600;
+    font-family: sans-serif;
+}

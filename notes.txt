@@ -1,0 +1,65 @@
+# with st.container(border=True):
+#     c1, c2, c3 = st.columns(3, border=False)
+    
+#     filtro1 = c1.selectbox('Selecione o Tipo Primário', df1['primary_type'].unique(), index=None)
+#     filtro2 = c2.selectbox('Selecione a Categoria', df1['category'].unique(), index=None)
+#     filtro3 = c3.selectbox('Selecione a Geração', df1['generation'].unique(), index=None)
+
+# # Cada métrica possui uma correspondência a uma função (total, média e máximo).
+# c4, c5, c6 = st.columns(3, border=True)
+# c4.metric(label='Total de Pokémons', value=total(df1), delta=":)")
+# c5.metric(label='Média de ataque básico', value=mean(df1), delta=":/")
+# c6.metric(label='Maior ataque especial', value=maximum(df1), delta=":D")
+
+# if filtro1 == None or filtro2 == None or filtro3 == None:
+#     st.warning('Selecione os filtros para gerar as métricas.') 
+
+
+# if 'graphs' not in st.session_state:
+#     st.session_state['graphs'] = False
+
+# # st.divider()
+# btn = st.button('Visualizar Gráficos', type="primary", on_click=graphs)
+
+
+# if btn:
+#     if st.session_state['graphs']:
+#         with st.container():
+            
+#             # Configs
+#             fig, axes = plt.subplots(3, 2, sharex=False, sharey=False)
+#             fig.set_figheight(10)
+#             fig.set_figwidth(15)
+
+#             # Removendo background
+#             fig.patch.set_alpha(0)  # Fundo da figura
+#             for row in axes:
+#                 for ax in row:
+#                     ax.set_facecolor((0, 0, 0, 0))  # Fundo dos eixos
+
+#             # Gráfico de barras
+#             # Grafico A
+#             axes[0][0].bar(df1['category'], df1['attack'], color='blue', linewidth=2, label='Attack by Category')
+#             axes[0][0].legend(loc='upper left')
+#             # Grafico B
+#             axes[0][1].bar(df1['category'], df1['defense'], color='blue', label='Defense by Category')
+#             axes[0][1].legend(loc='upper left')
+
+#             # Gráfico de dispersão
+#             # Grafico A
+#             axes[1][0].scatter(df1['category'], df1['special_attack'], color='blue', label='Special Attack by Category')
+#             axes[1][0].legend(loc='upper left')
+#             # Grafico B
+#             axes[1][1].scatter(df1['category'], df1['special_defense'], color='blue', label='Special Defense by Category')
+#             axes[1][1].legend(loc='upper left')
+
+#             # Histograma
+#             # Grafico A
+#             axes[2][0].hist(df1['category'], bins=10, color='blue', label='Category')
+#             axes[2][0].legend(loc='upper left')
+#             # Grafico B
+#             axes[2][1].hist(df1['generation'], bins=10, color='blue', label='Appreance')
+#             axes[2][1].legend(loc='upper left')
+            
+
+#             st.pyplot(fig)

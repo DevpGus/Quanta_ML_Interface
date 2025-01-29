@@ -19,11 +19,10 @@ df['LandAverageTemperature'] = df['LandAverageTemperature'].fillna(df['LandAvera
 st.title('Fazer Previsão')
 
 with st.container():
-    col1, col2 = st.columns(2)
-
     st.write('Selecione o período (em meses) para previsão da Temperatura Média da Superfície da Terra.')
     st.date_input('Data Desejada', value=None, min_value='2015-12-01', key='pred_time')
-
+    
+    col1, col2 = st.columns(2)
     with col1:
             prev = st.button('Enviar', type="primary", use_container_width=True, key='btn_prev')
     with col2:
@@ -32,7 +31,8 @@ with st.container():
 st.divider()
 
 if st.session_state.pred_time is not None:
-    pred_time = (st.session_state.pred_time.year * 12 + st.session_state.pred_time.month) - (2015*12 + 12)
+    pred_time = (st.session_state.pred_time.year * 12 + st.session_state.pred_time.month) 
+    # - (2015*12 + 12)
 
 # Previsão
 if prev:
@@ -47,7 +47,7 @@ if prev:
                 model = pickle.load(f)  
 
             df = pd.read_csv('./assets/forecasts/data/GlobalTemperatures.csv')
-            pred = model.forecast(pred_time)
+            pred = model.forecast(start=2226, end=pred_time)
 
             y = df.iloc[-200:]
             y.index = pd.to_datetime(y['dt'])

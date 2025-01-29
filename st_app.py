@@ -5,8 +5,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-repo_url = f"https://{os.getenv('GITHUB_TOKEN')}@github.com/username/quanta_ml_interface.git"
-Repo.clone_from(repo_url, 'local_path')
+headers = {
+    "authorization": st.secrets["github_token"],
+    "content-type": "application/json",
+}
 
 def wide_mode():
     st.set_page_config(layout="wide")

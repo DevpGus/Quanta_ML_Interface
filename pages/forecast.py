@@ -40,8 +40,7 @@ st.date_input('Data Desejada', value=None, min_value='2015-12-01', key='pred_tim
 if st.session_state.pred_time is not None:
     pred_time = (st.session_state.pred_time.year * 12 + st.session_state.pred_time.month) - (2015*12 + 12)
 
-with open('./assets/forecasts/sarima_model.pkl', 'rb') as f:
-    model = pickle.load(f)     
+   
 
 # model = sm.tsa.statespace.SARIMAX(df['LandAverageTemperature'],
 #                                 order=(2, 0, 2),
@@ -67,6 +66,9 @@ if st.session_state.btn_prev:
             st.toast('Previsão feita com sucesso!', icon=":material/check_circle_outline:")
             st.write(f'Previsão de Temperatura Média da Superfície da Terra para o mês {st.session_state.pred_time.month} de {st.session_state.pred_time.year}')
             
+            with open('./assets/forecasts/sarima_model.pkl', 'rb') as f:
+                model = pickle.load(f)  
+
             df = pd.read_csv('./assets/forecasts/data/GlobalTemperatures.csv')
             pred = model.forecast(pred_time)
 

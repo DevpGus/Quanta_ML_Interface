@@ -63,7 +63,7 @@ if st.session_state.btn_prev:
         st.error('Selecione uma data válida para fazer a previsão.')
     else:
         if pred_time is not None:
-            st.toast('Previsão feita com sucesso!', icon=":material/check_circle_outline:")
+            st.toast('Previsão feita! Carregando Resultados...', icon=":material/check_circle_outline:")
             st.write(f'Previsão de Temperatura Média da Superfície da Terra para o mês {st.session_state.pred_time.month} de {st.session_state.pred_time.year}')
             
             with open('./assets/forecasts/sarima_model.pkl', 'rb') as f:

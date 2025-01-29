@@ -1,12 +1,7 @@
-import os
-from git import Repo
 import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# repo_url = f"https://{os.getenv('GITHUB_TOKEN')}@github.com/DevpGus/Quanta_Ml_Interface.git"
-# Repo.clone_from(repo_url, 'local_path')
 
 
 def wide_mode():

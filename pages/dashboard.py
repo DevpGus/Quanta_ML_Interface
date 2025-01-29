@@ -1,36 +1,10 @@
 import streamlit as st
 import pandas as pd
-import matplotlib
 import matplotlib.pyplot as plt
 
 # Função de session_state dos gráficos.
 def graphs():
     st.session_state['graphs'] = True
-
-# Função para selecionar as métricas no dataset.
-def total(df):
-    filtro = (df['primary_type'] == filtro1) & (df['category'] == filtro2) & (df['generation'] == filtro3) 
-    new_df = df.loc[filtro]
-
-    return new_df['pokemon_id'].nunique()
-
-def mean(df):
-    if filtro1 == None or filtro2 == None or filtro3 == None:
-        return 0
-
-    filtro = (df['primary_type'] == filtro1) & (df['category'] == filtro2) & (df['generation'] == filtro3) 
-    new_df = df.loc[filtro]
-
-    return '%.2f' % (new_df['attack'].mean())
-
-def maximum(df):
-    if filtro1 == None or filtro2 == None or filtro3 == None:
-        return 0
-
-    filtro = (df['primary_type'] == filtro1) & (df['category'] == filtro2) & (df['generation'] == filtro3) 
-    new_df = df.loc[filtro]
-
-    return new_df['special_attack'].max()
 
 # Link do CSS
 with open('./assets/src/dashboard.css') as d:
@@ -38,17 +12,16 @@ with open('./assets/src/dashboard.css') as d:
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # Leitura dos datasets.
-pokemon = pd.read_csv('./assets/forecasts/data/pokemon_dataset.csv')
 df = pd.read_csv('./assets/forecasts/data/GlobalTemperatures.csv')
 
-# Leitura do dataset de países.
+# Leitura do dataset de países & tratamento.
 df_countries = pd.read_csv('./assets/forecasts/data/GlobalLandTemperaturesByCountry.csv')
 df_countries['time'] = pd.to_datetime(df_countries['dt'], errors='coerce')
 df_countries = df_countries.dropna(subset=['time'])
 
 # Estrutura da página
 st.title('Análise Gráfica')
-st.write('Descrevendo o propósito do modelo, por exemplo: "Este dashboard apresenta previsões baseadas em séries temporais, destacando tendências climáticas globais e regionais')
+st.write('Descrevendo o propósito do modelo, por exemplo: "Este dashboard apresenta previsões baseadas em séries temporais, destacando tendências de temperatura média da superfície global e/ou regional')
 
 st.divider()
 
@@ -56,43 +29,42 @@ st.divider()
 graph = df_countries
 with st.container():
     c1, c2, c3 = st.columns(3, gap='medium')
-
+    
+    # Filtro de País
     with c1:
-        selected_country = st.selectbox('Selecione o País', ['Global'] + sorted(df_countries['Country'].unique().tolist()), key='country')
-        
+        selected_country = st.selectbox('Selecione o País', ['Global'] + sorted(df_countries['Country'].unique().tolist()), key='country')    
     if st.session_state.country == 'Global':
         graph = df_countries.copy()
     else:
         graph = df_countries[df_countries['Country'] == selected_country]
     graph['time'] = graph['time'].dt.date
     
+    # Filtro de Intervalo de Tempo
     with c2:
         min_slider = int(graph['time'].min().year)
         max_slider = int(graph['time'].max().year)
         selected_interval = st.slider('Selecione o Período', min_value=min_slider, max_value=max_slider,  value=(min_slider, max_slider) , step=1, key='interval_time')
     
+        # Intervalo Seleciondo (em meses)
         inf = st.session_state['interval_time'][0]*12 - (min_slider*12)
         sup = st.session_state['interval_time'][1]*12 - (min_slider*12) 
 
+    # Filtro de Tipo de Dado
     with c3:
-        st.selectbox('Selecione o Tipo de Dado', ['Temperatura Média', 'Temperatura Máxima', 'Temperatura Mínima'], key='temp_type')
-        if st.session_state.temp_type == 'Temperatura Média':
+        st.selectbox('Selecione o Tipo de Dado', ['Média das Temperaturas', 'Temperatura Máxima Atingida', 'Temperatura Mínima Atingida'], key='temp_type')
+        if st.session_state.temp_type == 'Média das Temperaturas':
             temp = graph['AverageTemperature'][inf:sup].mean()
-        elif st.session_state.temp_type == 'Temperatura Máxima':
+        elif st.session_state.temp_type == 'Temperatura Máxima Atingida':
             temp = graph['AverageTemperature'][inf:sup].max()
         else:
             temp = graph['AverageTemperature'][inf:sup].min()
-
-
-# Intervalo de tempo
 
 st.write(" ")
 
 # Gráfico e Métricas
 with st.container():
     c1, c2 = st.columns([3, 1], gap='medium')
-    # graph = graph.dropna(subset=['AverageTemperature']) 
-
+    # Gráfico
     with c1:
         fig, ax = plt.subplots()
         fig.set_size_inches(20, 7)
@@ -106,10 +78,10 @@ with st.container():
         ax.legend()
         x_labels = graph['time'][inf:sup]
         ax.set_xticks(x_labels[::60])  # Exibe 1 rótulo a cada 30 entradas
-        ax.set_xticklabels(x_labels[::60], rotation=45)
+        ax.set_xticklabels(x_labels[::60], rotation=45) # Rótulos rotacionados
         st.pyplot(fig)
 
-
+    # Métricas
     with c2:
         st.metric(label='Temperatura (Celsius)', value='%.2f°C' % temp, delta="", border=True)
 
@@ -117,5 +89,7 @@ with st.container():
         last_change = graph['AverageTemperature'][inf:sup].pct_change().iloc[-1]
         var = (pct_change - last_change)
         st.metric(label='Variação Percentual', value='%.2f%%' % pct_change, delta='%.2f%%' % var, border=True)
+
 st.divider()
+
 st.button('Baixar Dados', type="primary", on_click=graphs)

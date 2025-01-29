@@ -1,3 +1,27 @@
+def total(df):
+#     filtro = (df['primary_type'] == filtro1) & (df['category'] == filtro2) & (df['generation'] == filtro3) 
+#     new_df = df.loc[filtro]
+
+#     return new_df['pokemon_id'].nunique()
+
+# def mean(df):
+#     if filtro1 == None or filtro2 == None or filtro3 == None:
+#         return 0
+
+#     filtro = (df['primary_type'] == filtro1) & (df['category'] == filtro2) & (df['generation'] == filtro3) 
+#     new_df = df.loc[filtro]
+
+#     return '%.2f' % (new_df['attack'].mean())
+
+# def maximum(df):
+#     if filtro1 == None or filtro2 == None or filtro3 == None:
+#         return 0
+
+#     filtro = (df['primary_type'] == filtro1) & (df['category'] == filtro2) & (df['generation'] == filtro3) 
+#     new_df = df.loc[filtro]
+
+#     return new_df['special_attack'].max()
+
 # with st.container(border=True):
 #     c1, c2, c3 = st.columns(3, border=False)
     
@@ -63,3 +87,4 @@
             
 
 #             st.pyplot(fig)
+

@@ -1,6 +1,6 @@
 import streamlit as st
 
-st.title('Olá, @User!')
+st.title('Bem vindo(a), @User!')
 
 with open('./assets/src/menu.css') as f:
     css = f.read()
@@ -16,11 +16,15 @@ st.html(
         <body>
             <div class="menu">
             <div style="display: flex; width: 100%; padding: 10px; border-radius: 10px;">
-                <h1 style="margin-inline: 3.8%">Instruções</h1>
+                <h1 style="margin-inline: 3.8%">Introdução</h1>
             </div>
 
                 <p style="margin-inline: 5%">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                    Olá! Estamos muito felizes em apresentar a você, [Nome do Cliente], a plataforma personalizada que criamos especialmente para atender às necessidades e desafios do seu negócio. Sabemos que cada empresa é única, e foi pensando nisso que desenvolvemos uma solução sob medida para você, com foco em modelos de aprendizado de máquina e dashboards interativos, de forma simples e eficiente.
+
+                    Essa plataforma foi feita para facilitar o uso de dados, tornando o processo de criação de modelos e análise de previsões algo prático e acessível, sem a necessidade de conhecimentos técnicos profundos. Nosso objetivo é ajudar a transformar seus dados em insights valiosos que podem orientar suas decisões, agilizar processos e contribuir para o sucesso da sua empresa.
+
+                    Siga em frente e veja como nossa ferramenta pode ser a solução que você procurava. Continue lendo para entender como a plataforma foi pensada especialmente para você, [Nome do Cliente], e como ela pode resolver as suas necessidades de forma eficiente e personalizada.
                 </p>    
             </div>
         </body>

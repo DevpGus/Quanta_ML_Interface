@@ -18,27 +18,12 @@ df['LandAverageTemperature'] = df['LandAverageTemperature'].fillna(df['LandAvera
 
 st.title('Fazer Previsão')
 
-# Example Inputs
-# c1, c2 = st.columns(2)
-# with c1:
-#     input_0 = st.selectbox('Selecione o tipo de dado', ['Dado 1', 'Dado 2', 'Dado 3'])
-#     input_1 = st.selectbox('Selecione o tipo de dado', ['Dado 4', 'Dado 5', 'Dado 6'])
-#     input_2 = st.selectbox('Selecione o tipo de dado', ['Dado 7', 'Dado 8', 'Dado 9'])
-#     input_3 = st.selectbox('Selecione o tipo de dado', ['Dado 10', 'Dado 11', 'Dado 12'])
-#     input_4 = st.number_input('Número 1')
-
-# with c2:
-#     input_5 = st.text_input('Nome')
-#     input_6 = st.text_input('Idade')
-#     input_7 = st.text_input('Sexo')
-#     input_8 = st.text_input('Peso')
-#     input_9 = st.number_input('Número 2')
-
-st.write('Selecione o período (em meses) para previsão da Temperatura Média da Superfície da Terra.')
-st.date_input('Data Desejada', value=None, min_value='2015-12-01', key='pred_time')
-
 with st.container():
     col1, col2 = st.columns(2)
+
+    st.write('Selecione o período (em meses) para previsão da Temperatura Média da Superfície da Terra.')
+    st.date_input('Data Desejada', value=None, min_value='2015-12-01', key='pred_time')
+
     with col1:
             prev = st.button('Enviar', type="primary", use_container_width=True, key='btn_prev')
     with col2:

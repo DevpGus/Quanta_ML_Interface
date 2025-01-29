@@ -22,13 +22,14 @@ with st.container():
     st.write('Selecione o período (em meses) para previsão da Temperatura Média da Superfície da Terra.')
     st.date_input('Data Desejada', value=None, min_value='2015-12-01', key='pred_time')
     
-    col1, col2 = st.columns(2)
-    with col1:
-            prev = st.button('Enviar', type="primary", use_container_width=True, key='btn_prev')
-    with col2:
-            st.button('Limpar', type="primary", use_container_width=True, key='btn_reset')
+col1, col2 = st.columns(2)
+with col1:
+    prev = st.button('Enviar', type="primary", use_container_width=True, key='btn_prev')
+with col2:
+    st.button('Limpar', type="primary", use_container_width=True, key='btn_reset')
 
 st.divider()
+st.write("AAAAAAAAAAAAAAaa")
 
 if st.session_state.pred_time is not None:
     pred_time = (st.session_state.pred_time.year * 12 + st.session_state.pred_time.month) 

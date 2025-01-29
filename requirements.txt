@@ -4,4 +4,3 @@ numpy<2
 matplotlib
 pmdarima
 statsmodels
-pickle

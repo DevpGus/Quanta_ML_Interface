@@ -1,3 +1,5 @@
+os
+git
 streamlit
 pandas
 numpy<2

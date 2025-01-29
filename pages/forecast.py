@@ -37,28 +37,20 @@ st.title('Fazer Previsão')
 st.write('Selecione o período (em meses) para previsão da Temperatura Média da Superfície da Terra.')
 st.date_input('Data Desejada', value=None, min_value='2015-12-01', key='pred_time')
 
-if st.session_state.pred_time is not None:
-    pred_time = (st.session_state.pred_time.year * 12 + st.session_state.pred_time.month) - (2015*12 + 12)
-
-   
-
-# model = sm.tsa.statespace.SARIMAX(df['LandAverageTemperature'],
-#                                 order=(2, 0, 2),
-#                                 seasonal_order=(2, 1, 0, 12),
-#                                 trend='t').fit()
-
-# Botões de Previsão e Reset
 with st.container():
     col1, col2 = st.columns(2)
     with col1:
-            st.button('Enviar', type="primary", use_container_width=True, key='btn_prev')
+            prev = st.button('Enviar', type="primary", use_container_width=True, key='btn_prev')
     with col2:
             st.button('Limpar', type="primary", use_container_width=True, key='btn_reset')
 
 st.divider()
 
+if st.session_state.pred_time is not None:
+    pred_time = (st.session_state.pred_time.year * 12 + st.session_state.pred_time.month) - (2015*12 + 12)
+
 # Previsão
-if st.session_state.btn_prev:
+if prev:
     if st.session_state.pred_time is None:
         st.error('Selecione uma data válida para fazer a previsão.')
     else:

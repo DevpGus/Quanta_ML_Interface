@@ -2,6 +2,7 @@ import streamlit as st
 import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import pandas as pd
+import pickle
 
 with open('./assets/src/forecast.css') as f:
     css = f.read()
@@ -39,11 +40,13 @@ st.date_input('Data Desejada', value=None, min_value='2015-12-01', key='pred_tim
 if st.session_state.pred_time is not None:
     pred_time = (st.session_state.pred_time.year * 12 + st.session_state.pred_time.month) - (2015*12 + 12)
 
-     
-model = sm.tsa.statespace.SARIMAX(df['LandAverageTemperature'],
-                                order=(2, 0, 2),
-                                seasonal_order=(2, 1, 0, 12),
-                                trend='t').fit()
+with open('./assets/forecasts/sarima_model.pkl', 'rb') as f:
+    model = pickle.load(f)     
+
+# model = sm.tsa.statespace.SARIMAX(df['LandAverageTemperature'],
+#                                 order=(2, 0, 2),
+#                                 seasonal_order=(2, 1, 0, 12),
+#                                 trend='t').fit()
 
 # Botões de Previsão e Reset
 with st.container():

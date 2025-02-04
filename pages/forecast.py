@@ -3,6 +3,22 @@ import statsmodels.api as sm
 import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
+import requests
+import gzip
+
+# URL do arquivo no GitHub Releases
+url = "https://github.com/DevpGus/Quanta_ML_Interface/releases/download/v1.0.0/sarima.pkl.gz"
+output_path = "sarima_model.pkl.gz"
+
+# Baixar o arquivo compactado
+response = requests.get(url, stream=True)
+if response.status_code == 200:
+    with open(output_path, "wb") as file:
+        file.write(response.content)
+    print(f"Arquivo baixado: {output_path}")
+else:
+    print(f"Erro ao baixar o arquivo: {response.status_code}")
+
 
 with open('./assets/src/forecast.css') as f:
     css = f.read()
@@ -42,8 +58,10 @@ if prev:
             st.toast('Previsão feita! Carregando Resultados...', icon=":material/check_circle_outline:")
             st.write(f'Previsão de Temperatura Média da Superfície da Terra para o mês {st.session_state.pred_time.month} de {st.session_state.pred_time.year}')
             
-            with open('./assets/forecasts/sarima_model.pkl', 'rb') as f:
-                model = pickle.load(f)  
+            # with open('./assets/forecasts/sarima_model.pkl', 'rb') as f:
+            #     model = pickle.load(f)  
+            with gzip.open(output_path, "rb") as f:
+                model = pickle.load(f)
 
             df = pd.read_csv('./assets/forecasts/data/GlobalTemperatures.csv')
             pred = []

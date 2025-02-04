@@ -66,7 +66,7 @@ if prev:
             pred = []
             pred = model.predict(start=3185, end=pred_time)
 
-            y = df.iloc[-1000:]
+            y = df.iloc[-700:]
             y.index = pd.to_datetime(y['dt'])
 
             fig, ax = plt.subplots()

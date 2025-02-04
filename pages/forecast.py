@@ -58,8 +58,7 @@ if prev:
             st.toast('Previsão feita! Carregando Resultados...', icon=":material/check_circle_outline:")
             st.write(f'Previsão de Temperatura Média da Superfície da Terra para o mês {st.session_state.pred_time.month} de {st.session_state.pred_time.year}')
             
-            # with open('./assets/forecasts/sarima_model.pkl', 'rb') as f:
-            #     model = pickle.load(f)  
+            
             with gzip.open(output_path, "rb") as f:
                 model = pickle.load(f)
 

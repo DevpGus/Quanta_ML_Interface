@@ -6,6 +6,10 @@ import pickle
 import requests
 import gzip
 
+# Se o usuário não estiver autenticado, redirecione para login
+if "authenticated" not in st.session_state or not st.session_state.authenticated:
+    st.switch_page("pages/account.py")
+
 # URL do arquivo no GitHub Releases
 url = "https://github.com/DevpGus/Quanta_ML_Interface/releases/download/v1.0.0/sarima.pkl.gz"
 output_path = "sarima_model.pkl.gz"

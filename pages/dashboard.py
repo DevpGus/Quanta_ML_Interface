@@ -2,6 +2,10 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# Se o usuário não estiver autenticado, redirecione para login
+if "authenticated" not in st.session_state or not st.session_state.authenticated:
+    st.switch_page("pages/account.py")
+
 # Função de session_state dos gráficos.
 def graphs():
     st.session_state['graphs'] = True

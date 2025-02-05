@@ -2,8 +2,9 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import bcrypt
 
-
+# Page Config
 def wide_mode():
     st.set_page_config(layout="wide")
     return

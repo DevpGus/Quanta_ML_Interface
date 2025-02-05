@@ -2,6 +2,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+# Se o usuário não estiver autenticado, redirecione para login
+if "authenticated" not in st.session_state or not st.session_state.authenticated:
+    st.switch_page("pages/account.py")
+
 # Funções para as abas de adição dos dados (manualmente ou por dataset).
 def add_data():
     st.session_state['add_data'] = 1

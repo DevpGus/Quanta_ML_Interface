@@ -43,6 +43,9 @@ else:
     with st.container():
         c1, c2 = st.columns([1,3], border=True)
         with c1:
-            st.image("./assets/src/img/perfil.png", use_container_width=True)
-            st.markdown(f"***{st.session_state.username}***")
-            st.markdown(f"{st.session_state.user_company}")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.image("./assets/src/img/perfil.png", use_container_width=True)
+            with col2:
+                st.markdown(f"***{st.session_state.username}***")
+                st.markdown(f"{st.session_state.user_company}")

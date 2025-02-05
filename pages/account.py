@@ -47,5 +47,6 @@ else:
             with col1:
                 st.image("./assets/src/img/perfil.png", use_container_width=True)
             with col2:
+                st.write(" ")
                 st.markdown(f"***{st.session_state.username}***")
                 st.markdown(f"{st.session_state.user_company}")

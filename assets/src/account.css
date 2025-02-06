@@ -1,0 +1,26 @@
+.perfil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.perfil p {
+    margin: 0 !important;
+}
+
+.perfil .username {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #2763FF; 
+    text-align: center;
+}
+
+.perfil .company {
+    font-size: 0.8rem;
+    font-weight: normal;
+    color: #11235a9e; 
+    text-align: center;
+}
+

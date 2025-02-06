@@ -1,6 +1,10 @@
 import streamlit as st
 import bcrypt
 
+with open('./assets/src/account.css') as f:
+    css = f.read()
+st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
 # Login
 USERS_DB = {
     "admin": [bcrypt.hashpw("123".encode(), bcrypt.gensalt()), "Quanta Júnior"],
@@ -41,12 +45,23 @@ else:
     st.write("Aqui você pode acessar informações privadas.")    
 
     with st.container():
-        c1, c2 = st.columns([1,3], border=True)
+        c1, c2 = st.columns([1,4], border=True)
         with c1:
-            col1, col2 = st.columns(2)
+            st.image('./assets/src/img/perfil.png')
+            st.html(f"""
+                <div class="perfil">
+                    <p class="username">{st.session_state.username}</p>
+                    <p class="company">{st.session_state.user_company}</p>
+                </div>
+                <br>
+            """)
+        with c2:
+            col1, col2, col3, col4 = st.columns([0.7,1,1,3.7])
             with col1:
-                st.image("./assets/src/img/perfil.png", use_container_width=True)
+                st.button("Perfil", key="perfil", type="secondary", use_container_width=True)
             with col2:
-                st.write(" ")
-                st.markdown(f"***{st.session_state.username}***")
-                st.markdown(f"{st.session_state.user_company}")
+                st.button("Empresa", key="empresa", type="secondary", use_container_width=True)
+            with col3:
+                st.button("Documentos", key="documentos", type="secondary", use_container_width=True)
+            
+

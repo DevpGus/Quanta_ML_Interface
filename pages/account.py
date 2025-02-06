@@ -1,5 +1,10 @@
 import streamlit as st
 import bcrypt
+import base64
+
+def get_base64_of_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
 
 with open('./assets/src/account.css') as f:
     css = f.read()
@@ -41,27 +46,57 @@ if not st.session_state.authenticated:
     login()
 else:
 
+
+
+# Caminho da imagem local
+    image_path_1 = "./assets/src/img/perfil.png"
+    image_path_2 = "./assets/src/img/help.png"
+
+# Convertendo a imagem para base64
+    image_base64 = get_base64_of_image(image_path_1)
+    image_base64_2 = get_base64_of_image(image_path_2)
+
+
     st.success(f"Logado como {st.session_state.username}")
     st.write("Aqui você pode acessar informações privadas.")    
 
     with st.container():
-        c1, c2 = st.columns([1,4], border=True)
-        with c1:
-            st.image('./assets/src/img/perfil.png')
-            st.html(f"""
-                <div class="perfil">
-                    <p class="username">{st.session_state.username}</p>
-                    <p class="company">{st.session_state.user_company}</p>
+         
+            # st.image('./assets/src/img/perfil.png', width=100)
+        st.html(f"""
+            <div class="login-header">
+                <div class="avatar">
+                    <div style="text-align: center;">
+                        <img src="data:image/png;base64,{image_base64}" width="50%">
+                    </div>
+                    <div class="perfil">
+                        <p class="username">{st.session_state.username}</p>
+                        <p class="company">{st.session_state.user_company}</p>
+                    </div>
                 </div>
-                <br>
-            """)
-        with c2:
-            col1, col2, col3, col4 = st.columns([0.7,1,1,3.7])
-            with col1:
-                st.button("Perfil", key="perfil", type="secondary", use_container_width=True)
-            with col2:
-                st.button("Empresa", key="empresa", type="secondary", use_container_width=True)
-            with col3:
-                st.button("Documentos", key="documentos", type="secondary", use_container_width=True)
-            
+                <div class="menu">
+                    <p class="menu-item">Manual do Projeto</p>
+                   
+                </div>
+            </div> 
+
+            <div class="login-body">
+                <div class="help">
+                    <br> 
+                    <img src="data:image/png;base64,{image_base64_2}" width="50%">
+                    <p>Precisa de Ajuda?<p>
+                    <a href="mailto:gustavo.pereira@quanta.org.br">
+                        Entre em contato conosco
+                    </a>
+                </div>
+                <div class="menu"> 
+                    <p class="menu-item">Documentos e Escopo</p> 
+                </div>
+            </div>
+            <br>
+        """)
+            # st.button("Perfil", key="perfil", type="secondary", use_container_width=True)
+            # st.button("Empresa", key="empresa", type="secondary", use_container_width=True)
+            # st.button("Docs", key="documentos", type="secondary", use_container_width=True)
+
 

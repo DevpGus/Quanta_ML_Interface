@@ -10,7 +10,7 @@
     margin: 0 !important;
 }
 
-.perfil .username {
+.username {
     font-size: 1.1rem;
     font-weight: 300;
     color: #2763FF; 
@@ -24,3 +24,79 @@
     text-align: center;
 }
 
+.login-header {
+    display: flex;
+    flex-direction: row;  
+    justify-content: space-between;  
+    gap: 10px;
+}
+
+.login-header .avatar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px;
+    width: 19%;
+    background-color: #FFF;
+    border-radius: 8px;
+}
+
+.login-header .menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px;
+    width: 80%;
+    background-color: #FFF;
+    border-radius: 8px;
+}
+
+.login-body{
+    display: flex;
+    flex-direction: row;  
+    justify-content: space-between;  
+    gap: 10px;
+    margin-top: 1%;
+}
+
+.login-body .help{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px;
+    width: 19%;
+    background-color: #FFF;
+    border-radius: 8px;
+    gap: 5px;
+}
+
+.login-body .menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 10px;
+    width: 80%;
+    background-color: #FFF;
+    border-radius: 8px;
+}
+
+.login-body .help p{
+    font-size: 1rem;
+    font-weight: 300;
+    color: #2763FF; 
+    text-align: center;
+}
+
+.login-body .help a{
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: #FFF;
+    background-color: #2763FF;
+    padding: 5px 10px;
+    text-decoration: none; 
+    text-align: center;
+}

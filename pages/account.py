@@ -63,7 +63,7 @@ else:
     with st.container():
          
             # st.image('./assets/src/img/perfil.png', width=100)
-        st.html(f"""
+        st.html(f""" 
             <div class="login-header">
                 <div class="avatar">
                     <div style="text-align: center;">
@@ -75,8 +75,13 @@ else:
                     </div>
                 </div>
                 <div class="menu">
-                    <p class="menu-item">Manual do Projeto</p>
-                   
+                    <div class="title">
+                        <p>Detalhes</p>
+                        <div class="line"></div> 
+                    </div>
+                    <div class="menu-item">
+                        <p>Manual do Projeto</p>
+                    </div>
                 </div>
             </div> 
 
@@ -90,7 +95,13 @@ else:
                     </a>
                 </div>
                 <div class="menu"> 
-                    <p class="menu-item">Documentos e Escopo</p> 
+                    <div class="title">
+                        <p>Documentos</p>
+                        <div class="line"></div> 
+                    </div>
+                    <div class="menu-item">
+                        <p>Escopo e Contrato</p>
+                    </div>
                 </div>
             </div>
             <br>

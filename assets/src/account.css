@@ -45,12 +45,17 @@
 .login-header .menu{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 15px 10px;
     width: 80%;
     background-color: #FFF;
     border-radius: 8px;
+}
+
+.menu-item{
+    display: flex;
+    flex-direction: row;
+    padding: 10px 0;
+    margin-inline: 5%;
 }
 
 .login-body{
@@ -76,8 +81,6 @@
 .login-body .menu{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     padding: 15px 10px;
     width: 80%;
     background-color: #FFF;
@@ -99,4 +102,24 @@
     padding: 5px 10px;
     text-decoration: none; 
     text-align: center;
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #11235A; 
+    margin-inline: 5%;
+}
+
+.title p{
+    margin: 0 !important;
+}
+
+.title .line{
+    width: 20%;
+    height: 1px;
+    background-color: #2763FF;
+    margin: 5px 0;
 }

@@ -35,4 +35,4 @@ st.html(
     """
 )
 
-st.button("Vamos fazer previsões!", type="primary", on_click=lambda: st.switch_page("pages/forecast.py"))
+# st.button("Vamos fazer previsões!", type="primary", on_click=lambda: st.switch_page("pages/forecast.py"))

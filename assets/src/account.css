@@ -52,10 +52,22 @@
 }
 
 .menu-item{
-    display: flex;
-    flex-direction: row;
-    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 15px 0;
     margin-inline: 5%;
+}
+
+.menu-item a{
+    font-size: 1rem;
+    font-weight: 300;
+    color: #11235A; 
+    text-decoration: none;
+}
+
+.menu-item a:hover{
+    color: #2763FF; 
 }
 
 .login-body{
@@ -119,7 +131,7 @@
 
 .title .line{
     width: 20%;
-    height: 1px;
+    height: 1.5px;
     background-color: #2763FF;
     margin: 5px 0;
 }

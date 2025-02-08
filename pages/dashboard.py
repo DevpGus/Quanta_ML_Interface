@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import time
 
 # Se o usuário não estiver autenticado, redirecione para login
 if "authenticated" not in st.session_state or not st.session_state.authenticated:
@@ -9,6 +10,14 @@ if "authenticated" not in st.session_state or not st.session_state.authenticated
 # Função de session_state dos gráficos.
 def graphs():
     st.session_state['graphs'] = True
+
+# Função de download dos dados.
+def download_data():
+    with st.spinner('Baixando dados...'):
+        time.sleep(3)
+    df.to_excel(df, index=False)
+    st.sucess('Dados baixados com sucesso!')
+
 
 # Link do CSS
 with open('./assets/src/dashboard.css') as d:
@@ -55,10 +64,10 @@ with st.container():
 
     # Filtro de Tipo de Dado
     with c3:
-        st.selectbox('Selecione o Tipo de Dado', ['Média das Temperaturas', 'Temperatura Máxima Atingida', 'Temperatura Mínima Atingida'], key='temp_type')
-        if st.session_state.temp_type == 'Média das Temperaturas':
+        st.selectbox('Selecione o Tipo de Dado', ['Média do Dataset', 'Máxima', 'Mínima'], key='temp_type')
+        if st.session_state.temp_type == 'Média do Dataset':
             temp = graph['AverageTemperature'][inf:sup].mean()
-        elif st.session_state.temp_type == 'Temperatura Máxima Atingida':
+        elif st.session_state.temp_type == 'Máxima':
             temp = graph['AverageTemperature'][inf:sup].max()
         else:
             temp = graph['AverageTemperature'][inf:sup].min()
@@ -92,8 +101,15 @@ with st.container():
         pct_change = graph['AverageTemperature'][inf:sup].pct_change().mean()
         last_change = graph['AverageTemperature'][inf:sup].pct_change().iloc[-1]
         var = (pct_change - last_change)
-        st.metric(label='Variação Percentual', value='%.2f%%' % pct_change, delta='%.2f%%' % var, border=True)
+        st.metric(label='Variação Percentual (Extremos)', value='%.2f%%' % pct_change, delta='%.2f%%' % var, border=True)
 
 st.divider()
 
-st.button('Baixar Dados', type="primary", on_click=graphs)
+# Download dos Dados
+data = st.download_button(
+    label="Baixar Dados",
+    data=graph.to_csv(index=False),
+    type="primary",
+    file_name="AverageTemperature.csv",
+    mime="text/csv"
+)

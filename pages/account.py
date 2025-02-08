@@ -64,47 +64,56 @@ else:
          
             # st.image('./assets/src/img/perfil.png', width=100)
         st.html(f""" 
-            <div class="login-header">
-                <div class="avatar">
-                    <div style="text-align: center;">
-                        <img src="data:image/png;base64,{image_base64}" width="50%">
+            <head>
+            </head>    
+            <body>       
+                <div class="login-header">
+                    <div class="avatar">
+                        <div style="text-align: center;">
+                            <img src="data:image/png;base64,{image_base64}" width="50%">
+                        </div>
+                        <div class="perfil">
+                            <p class="username">{st.session_state.username}</p>
+                            <p class="company">{st.session_state.user_company}</p>
+                        </div>
                     </div>
-                    <div class="perfil">
-                        <p class="username">{st.session_state.username}</p>
-                        <p class="company">{st.session_state.user_company}</p>
+                    <div class="menu">
+                        <div class="title">
+                            <p>Detalhes</p>
+                            <div class="line"></div> 
+                        </div>
+                        <div class="menu-item">
+                            <a href="https://docs.google.com/document/d/1FqZyyGEbWNEpDiJgS0Imw9ac5VjycikPGWY5OE8jaE8/edit?usp=sharing">Manual do Projeto 🗎</a>
+                        </div>
                     </div>
-                </div>
-                <div class="menu">
-                    <div class="title">
-                        <p>Detalhes</p>
-                        <div class="line"></div> 
-                    </div>
-                    <div class="menu-item">
-                        <p>Manual do Projeto</p>
-                    </div>
-                </div>
-            </div> 
+                </div> 
 
-            <div class="login-body">
-                <div class="help">
-                    <br> 
-                    <img src="data:image/png;base64,{image_base64_2}" width="50%">
-                    <p>Precisa de Ajuda?<p>
-                    <a href="mailto:gustavo.pereira@quanta.org.br">
-                        Entre em contato conosco
-                    </a>
-                </div>
-                <div class="menu"> 
-                    <div class="title">
-                        <p>Documentos</p>
-                        <div class="line"></div> 
+                <div class="login-body">
+                    <div class="help">
+                        <br> 
+                        <img src="data:image/png;base64,{image_base64_2}" width="50%">
+                        <p>Precisa de Ajuda?<p>
+                        <a href="mailto:gustavo.pereira@quanta.org.br">
+                            Entre em contato conosco
+                        </a> 
                     </div>
-                    <div class="menu-item">
-                        <p>Escopo e Contrato</p>
+                    <div class="menu"> 
+                        <div class="title">
+                            <p>Documentos</p>
+                            <div class="line"></div> 
+                        </div> 
+                        <div class="menu-item">
+                            <a href="https://docs.google.com/document/d/1FqZyyGEbWNEpDiJgS0Imw9ac5VjycikPGWY5OE8jaE8/edit?usp=sharing">Escopo 🗎</a>
+                            <a href="https://docs.google.com/document/d/1FqZyyGEbWNEpDiJgS0Imw9ac5VjycikPGWY5OE8jaE8/edit?usp=sharing">Contrato 🗎</a>
+                            <a href="https://docs.google.com/document/d/1FqZyyGEbWNEpDiJgS0Imw9ac5VjycikPGWY5OE8jaE8/edit?usp=sharing">Artigo 1 🗎</a>
+                            <a href="https://docs.google.com/document/d/1FqZyyGEbWNEpDiJgS0Imw9ac5VjycikPGWY5OE8jaE8/edit?usp=sharing">Artigo 2 🗎</a>
+                            <a href="https://docs.google.com/document/d/1FqZyyGEbWNEpDiJgS0Imw9ac5VjycikPGWY5OE8jaE8/edit?usp=sharing">Artigo 3 🗎</a>
+                            <a href="https://docs.google.com/document/d/1FqZyyGEbWNEpDiJgS0Imw9ac5VjycikPGWY5OE8jaE8/edit?usp=sharing">Artigo 4 🗎</a> 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br>
+                <br>
+            </body>
         """)
             # st.button("Perfil", key="perfil", type="secondary", use_container_width=True)
             # st.button("Empresa", key="empresa", type="secondary", use_container_width=True)

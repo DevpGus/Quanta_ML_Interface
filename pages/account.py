@@ -12,6 +12,7 @@ with open('./assets/src/account.css') as f:
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # Login
+st.write(st.secrets["cookie"])
 
 credentials = {key: dict(value) for key, value in st.secrets["credentials"].items()}
 cookie = dict(st.secrets["cookie"])

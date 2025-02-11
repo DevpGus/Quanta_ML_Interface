@@ -23,7 +23,7 @@ authenticator = stauth.Authenticate(
     cookie['expiry_days']
 )
 
-name, authentication_status, username = authenticator.login("Login","*account.py")
+name, authentication_status, username = authenticator.login("Login", "main")
 
 if authentication_status:
     st.success(f"Logado como {username}")

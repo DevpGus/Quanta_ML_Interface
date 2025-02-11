@@ -3,6 +3,9 @@ import streamlit_authenticator as stauth
 import bcrypt
 import base64
 
+if 'authenticated' not in st.session_state:
+    st.session_state.authenticated = False
+
 def get_base64_of_image(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
@@ -12,29 +15,40 @@ with open('./assets/src/account.css') as f:
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # Login
-st.write(st.secrets["cookie"])
+# st.write(st.secrets["credentials"])
 
-credentials = {key: dict(value) for key, value in st.secrets["credentials"].items()}
-cookie = dict(st.secrets["cookie"])
+bd_username = st.secrets['credentials']['username']
+bd_password = st.secrets['credentials']['password'] 
+bd_name = st.secrets['credentials']['name']
 
-authenticator = stauth.Authenticate(
-    credentials,
-    cookie['name'],
-    cookie['key'],
-    cookie['expiry_days']
-)
+# st.write(bcrypt.hashpw("123".encode(), bcrypt.gensalt()))
 
-name, authentication_status, username = authenticator.login("Login", "main")
+def verificar_senha(username, password):
+    if username in bd_username:
+        st.write("pasou")
+        if password == bd_password:
+            return True
+    return False 
 
-if authentication_status:
-    st.success(f"Logado como {username}")
-    if st.button("Logout"):
-        authenticator.logout("Sair", "sidebar")
-        st.rerun()
-elif authentication_status is False:
-    st.error("Usuário ou senha incorretos")
-elif authentication_status is None:
-    st.error("Por favor, insira suas credenciais")
+
+def login():
+    st.title("Login")
+    with st.container(border=True):
+        username = st.text_input("Usuário")
+        password = st.text_input("Senha", type="password")
+
+        if st.button("Login", type="primary"):
+            if verificar_senha(username, password):
+                st.session_state.authenticated = True
+                st.session_state.username = bd_username
+                st.session_state.user_company = bd_name
+                st.success("Login efetuado com sucesso! Redirecionando...")
+                st.switch_page("pages/menu.py")
+            else:
+                st.error("Usuário ou senha incorretos")
+    return
+
+
 
 # USERS_DB = {
 #     "admin": [bcrypt.hashpw("123".encode(), bcrypt.gensalt()), "Quanta Júnior"],
@@ -67,12 +81,11 @@ elif authentication_status is None:
 #                 st.error("Usuário ou senha incorretos")
 #     return
 
-# if not st.session_state.authenticated:
-#     login()
-# else:
+if not st.session_state.authenticated:
+    login()
+else:
 
 
-if authentication_status:
 # Caminho da imagem local
     image_path_1 = "./assets/src/img/perfil.png"
     image_path_2 = "./assets/src/img/help.png"
@@ -82,7 +95,7 @@ if authentication_status:
     image_base64_2 = get_base64_of_image(image_path_2)
 
 
-    st.success(f"Logado como {st.session_state.username}")
+    # st.success(f"Logado como {st.session_state.username}")
     st.write("Aqui você pode acessar informações privadas.")    
 
     with st.container():

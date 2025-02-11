@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit_authenticator as stauth
 import bcrypt
 import base64
 
@@ -11,43 +12,66 @@ with open('./assets/src/account.css') as f:
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # Login
-USERS_DB = {
-    "admin": [bcrypt.hashpw("123".encode(), bcrypt.gensalt()), "Quanta Júnior"],
-    "user": [bcrypt.hashpw("user123".encode(), bcrypt.gensalt()), "Quanta Júnior"],
-}
 
-if 'authenticated' not in st.session_state:
-    st.session_state.authenticated = False
+credentials = st.secrets["credentials"]
+cookie = st.secrets["cookie"]
 
-def verificar_senha(username, password):
-    if username in USERS_DB:
-        if bcrypt.checkpw(password.encode(), USERS_DB[username][0]):
-            return True
-    return False
+authenticator = stauth.Authenticate(
+    credentials,
+    cookie['name'],
+    cookie['key'],
+    cookie['expiry_days']
+)
 
-def login():
-    st.title("Login")
-    with st.container(border=True):
-        username = st.text_input("Usuário")
-        password = st.text_input("Senha", type="password")
+name, authentication_status, username = authenticator.login("Login","*account.py")
 
-        if st.button("Login", type="primary"):
-            if verificar_senha(username, password):
-                st.session_state.authenticated = True
-                st.session_state.username = username
-                st.session_state.user_company = USERS_DB[username][1]
-                st.success("Login efetuado com sucesso! Redirecionando...")
-                st.switch_page("pages/menu.py")
-            else:
-                st.error("Usuário ou senha incorretos")
-    return
+if authentication_status:
+    st.success(f"Logado como {username}")
+    if st.button("Logout"):
+        authenticator.logout("Sair", "sidebar")
+        st.rerun()
+elif authentication_status is False:
+    st.error("Usuário ou senha incorretos")
+elif authentication_status is None:
+    st.error("Por favor, insira suas credenciais")
 
-if not st.session_state.authenticated:
-    login()
-else:
+# USERS_DB = {
+#     "admin": [bcrypt.hashpw("123".encode(), bcrypt.gensalt()), "Quanta Júnior"],
+#     "user": [bcrypt.hashpw("user123".encode(), bcrypt.gensalt()), "Quanta Júnior"],
+# }
+
+# if 'authenticated' not in st.session_state:
+#     st.session_state.authenticated = False
+
+# def verificar_senha(username, password):
+#     if username in USERS_DB:
+#         if bcrypt.checkpw(password.encode(), USERS_DB[username][0]):
+#             return True
+#     return False
+
+# def login():
+#     st.title("Login")
+#     with st.container(border=True):
+#         username = st.text_input("Usuário")
+#         password = st.text_input("Senha", type="password")
+
+#         if st.button("Login", type="primary"):
+#             if verificar_senha(username, password):
+#                 st.session_state.authenticated = True
+#                 st.session_state.username = username
+#                 st.session_state.user_company = USERS_DB[username][1]
+#                 st.success("Login efetuado com sucesso! Redirecionando...")
+#                 st.switch_page("pages/menu.py")
+#             else:
+#                 st.error("Usuário ou senha incorretos")
+#     return
+
+# if not st.session_state.authenticated:
+#     login()
+# else:
 
 
-
+if authentication_status:
 # Caminho da imagem local
     image_path_1 = "./assets/src/img/perfil.png"
     image_path_2 = "./assets/src/img/help.png"

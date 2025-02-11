@@ -13,8 +13,8 @@ st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # Login
 
-credentials = st.secrets["credentials"]
-cookie = st.secrets["cookie"]
+credentials = {key: dict(value) for key, value in st.secrets["credentials"].items()}
+cookie = dict(st.secrets["cookie"])
 
 authenticator = stauth.Authenticate(
     credentials,

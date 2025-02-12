@@ -1,12 +1,9 @@
 # Quanta_ML_Interface
+Esta é uma aplicação Streamlit com o objetivo de padronizar/facilitar o desenvolvimento de interfaces pelo time de projetos da Quanta Júnior.
 Para acessar a página e visualizar o projeto, acesse: https://quanta-std-interface.streamlit.app/.
 
 # Clonar Repositório
-Para clonar 
-
-# Nome da Aplicação Streamlit  
-
-Esta é uma aplicação desenvolvida com Streamlit para [objetivo da aplicação].  
+Para clonar  
 
 ## Como utilizar  
 
@@ -14,3 +11,13 @@ Esta é uma aplicação desenvolvida com Streamlit para [objetivo da aplicação
 ```bash
 git clone <URL_DO_REPOSITORIO>
 cd <NOME_DO_REPOSITORIO>
+
+NOME_DO_REPOSITORIO/
+│   app.py              # Arquivo principal da aplicação Streamlit
+│   requirements.txt    # Dependências do projeto
+│   README.md            # Este arquivo
+│
+└───data/               # Dados utilizados pela aplicação (se aplicável)
+└───pages/              # Páginas adicionais da aplicação Streamlit
+└───components/         # Componentes customizados (se houver)
+└───utils/              # Funções auxiliares e utilitários

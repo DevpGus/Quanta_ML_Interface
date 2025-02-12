@@ -15,22 +15,19 @@ with open('./assets/src/account.css') as f:
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
 # Login
-# st.write(st.secrets["credentials"])
+usernames = st.secrets["auth"]["usernames"]
+passwords = st.secrets["auth"]['passwords'] 
+name = st.secrets["auth"]['names']
 
-bd_username = st.secrets['credentials']['username']
-bd_password = st.secrets['credentials']['password'] 
-bd_name = st.secrets['credentials']['name']
-
-# st.write(bcrypt.hashpw("123".encode(), bcrypt.gensalt()))
-
+# Verificação de nome e senha com bcrypt.
 def verificar_senha(username, password):
-    if username in bd_username:
-        st.write("pasou")
-        if password == bd_password:
-            return True
+    if username in usernames:
+        index = usernames.index(username)
+        if bcrypt.checkpw(password.encode(), passwords[index].encode()):
+             return True
     return False 
 
-
+# Construção da página de login e execução.
 def login():
     st.title("Login")
     with st.container(border=True):
@@ -40,14 +37,13 @@ def login():
         if st.button("Login", type="primary"):
             if verificar_senha(username, password):
                 st.session_state.authenticated = True
-                st.session_state.username = bd_username
-                st.session_state.user_company = bd_name
+                st.session_state.username = username
+                st.session_state.user_company = name[usernames.index(username)]
                 st.success("Login efetuado com sucesso! Redirecionando...")
                 st.switch_page("pages/menu.py")
             else:
                 st.error("Usuário ou senha incorretos")
     return
-
 
 
 # USERS_DB = {

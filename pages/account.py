@@ -82,7 +82,7 @@ else:
                 <div class="login-header">
                     <div class="avatar">
                         <div style="text-align: center;">
-                            <img src="data:image/png;base64,{image_base64_1}" width="50%">
+                            <img src="data:image/png;base64,{image_base64}" width="50%">
                         </div>
                         <div class="perfil">
                             <p class="username">{st.session_state.username}</p>

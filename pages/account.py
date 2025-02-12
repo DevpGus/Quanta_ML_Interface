@@ -53,7 +53,7 @@ else:
 
     # Caminho da imagem local // Necessário que a ordem dos caminhos seja a mesma dos usuários cadastrados
     image_path_1 = "./assets/src/img/perfil.png"
-    image_path_2 = "./assets/src/img/logo.png"
+    image_path_2 = "./assets/src/img/empresa.png"
     # ... Adicionar o caminho das imagens para n usuários criados
 
     image_help = "./assets/src/img/help.png"

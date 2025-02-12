@@ -61,6 +61,11 @@ else:
 
 
     st.write("Aqui você pode acessar informações privadas.")    
+
+    # HTML da página de perfil: Aqui você pode alterar o conteúdo conforme sua necessidade.
+    # Para modificar os links dos itens do menu, basta susbstituir as tags <a> com os links desejados (em href).
+    # Para alterar as imagens, basta alterar o caminho das imagens em image_path_1 e image_path_2.
+
     with st.container(): 
         st.html(f""" 
             <head>

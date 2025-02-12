@@ -39,18 +39,19 @@ st.write('Descrevendo o propósito do modelo, por exemplo: "Este dashboard apres
 st.divider()
 
 # Filtros de seleção
-graph = df_countries
 with st.container():
     c1, c2, c3 = st.columns(3, gap='medium')
     
     # Filtro de País
     with c1:
-        selected_country = st.selectbox('Selecione o País', ['Global'] + sorted(df_countries['Country'].unique().tolist()), key='country')    
+        selected_country = st.selectbox('Selecione o País', ['Global'] + sorted(df_countries['Country'].unique().tolist()), key='country') # Adiciona os valores únicos de 'Country' ao selectbox (no caso, o nome dos países).   
+    
     if st.session_state.country == 'Global':
         graph = df_countries.copy()
     else:
         graph = df_countries[df_countries['Country'] == selected_country]
-    graph['time'] = graph['time'].dt.date
+
+    graph['time'] = graph['time'].dt.date # Apenas a data   
     
     # Filtro de Intervalo de Tempo
     with c2:
@@ -59,8 +60,8 @@ with st.container():
         selected_interval = st.slider('Selecione o Período', min_value=min_slider, max_value=max_slider,  value=(min_slider, max_slider) , step=1, key='interval_time')
     
         # Intervalo Seleciondo (em meses)
-        inf = st.session_state['interval_time'][0]*12 - (min_slider*12)
-        sup = st.session_state['interval_time'][1]*12 - (min_slider*12) 
+        inf = st.session_state['interval_time'][0]*12 - (min_slider*12) # Início
+        sup = st.session_state['interval_time'][1]*12 - (min_slider*12) # Fim
 
     # Filtro de Tipo de Dado
     with c3:
@@ -76,8 +77,9 @@ st.write(" ")
 
 # Gráfico e Métricas
 with st.container():
-    c1, c2 = st.columns([3, 1], gap='medium')
-    # Gráfico
+    c1, c2 = st.columns([3, 1], gap='medium') # Divisão da página
+    
+    # Gráfico // Modifique o gráfico conforme necessário
     with c1:
         fig, ax = plt.subplots()
         fig.set_size_inches(20, 7)

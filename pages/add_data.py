@@ -23,7 +23,6 @@ with open('./assets/src/data.css') as f:
     css = f.read()
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
 
-
 # Estrutura da página
 if 'add_data' not in st.session_state:
     st.session_state['add_data'] = 1
@@ -59,8 +58,6 @@ with st.container():
 # Inserir Banco de Dados (por padrão csv) // Concatenar com GitHub
     if st.session_state['add_data'] == 0:
         st.warning("Para adicionar novos dados, arraste o arquivo para a área abaixo.")
-        # with st.chat_message("user", avatar="./assets/src/img/logo_mini.png"):
-        #     st.write("Para adicionar novos dados, arraste o arquivo para a área abaixo.")
 
         upload_file = st.file_uploader('Escolha o arquivo', type='csv')
         if upload_file is not None:

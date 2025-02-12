@@ -1,7 +1,7 @@
 import streamlit as st
-import streamlit_authenticator as stauth
-import bcrypt
-import base64
+import streamlit_authenticator as stauth # Importação do módulo de autenticação // Não utilizado neste exemplo
+import bcrypt # Importação do módulo de criptografia de senha
+import base64 # Importação do módulo para conversão de imagem em base64
 
 if 'authenticated' not in st.session_state:
     st.session_state.authenticated = False
@@ -51,19 +51,27 @@ if not st.session_state.authenticated:
     login()
 else:
 
-    # Caminho da imagem local
+    # Caminho da imagem local // Necessário que a ordem dos caminhos seja a mesma dos usuários cadastrados
     image_path_1 = "./assets/src/img/perfil.png"
-    image_path_2 = "./assets/src/img/help.png"
+    image_path_2 = "./assets/src/img/logo.png"
+    # ... Adicionar o caminho das imagens para n usuários criados
 
-    # Convertendo a imagem para base64
-    image_base64 = get_base64_of_image(image_path_1)
-    image_base64_2 = get_base64_of_image(image_path_2)
+    image_help = "./assets/src/img/help.png"
 
+    # Verificação do usuário para exibição da imagem
+    index = usernames.index(st.session_state.username)
+    if index == 0:
+        image_base64 = get_base64_of_image(image_path_1)
+    elif index == 1:
+        image_base64 = get_base64_of_image(image_path_2)
+    # ... Seguir o mesmo procedimento para n usuários criados
+
+    image_base64_help = get_base64_of_image(image_help)
 
     st.write("Aqui você pode acessar informações privadas.")    
 
     # HTML da página de perfil: Aqui você pode alterar o conteúdo conforme sua necessidade.
-    # Para modificar os links dos itens do menu, basta susbstituir as tags <a> com os links desejados (em href).
+    # Para adicionar links, utilize a tag <a> e adicione o link na propriedade href.
     # Para alterar as imagens, basta alterar o caminho das imagens em image_path_1 e image_path_2.
 
     with st.container(): 
@@ -74,7 +82,7 @@ else:
                 <div class="login-header">
                     <div class="avatar">
                         <div style="text-align: center;">
-                            <img src="data:image/png;base64,{image_base64}" width="50%">
+                            <img src="data:image/png;base64,{image_base64_1}" width="50%">
                         </div>
                         <div class="perfil">
                             <p class="username">{st.session_state.username}</p>
@@ -95,7 +103,7 @@ else:
                 <div class="login-body">
                     <div class="help">
                         <br> 
-                        <img src="data:image/png;base64,{image_base64_2}" width="50%">
+                        <img src="data:image/png;base64,{image_base64_help}" width="50%">
                         <p>Precisa de Ajuda?<p>
                         <a href="mailto:gustavo.pereira@quanta.org.br">
                             Entre em contato conosco

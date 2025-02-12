@@ -4,11 +4,17 @@ import streamlit as st
 if "authenticated" not in st.session_state or not st.session_state.authenticated:
     st.switch_page("pages/account.py")
 
+# Título da página
 st.title(f'Bem vindo(a), {st.session_state.username}!')
 
+# Link do CSS
 with open('./assets/src/menu.css') as f:
     css = f.read()
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
+### HTML da página de Menu
+# O conteúdo pode ser personalizado conforme a necessidade.
+# Altere as informações de acordo com o seu projeto na tag <p>.
 
 st.html(
     """

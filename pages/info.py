@@ -6,9 +6,15 @@ if "authenticated" not in st.session_state or not st.session_state.authenticated
 
 st.title('Informações')
 
+# Link do CSS
 with open('./assets/src/info.css') as f:
     css = f.read()
 st.markdown(f'<style>{css}</style>', unsafe_allow_html=True)
+
+### HTML da página de informações
+# O conteúdo pode ser personalizado conforme a necessidade.
+# Altere as informações de acordo com o seu projeto na tag <p>.
+# Para adicionar links, utilize a tag <a> e adicione o link na propriedade href.
 
 st.html(
     """

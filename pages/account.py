@@ -73,6 +73,7 @@ else:
     # HTML da página de perfil: Aqui você pode alterar o conteúdo conforme sua necessidade.
     # Para adicionar links, utilize a tag <a> e adicione o link na propriedade href.
     # Para alterar as imagens, basta alterar o caminho das imagens em image_path_1 e image_path_2.
+    # Caso seja necessário, é possivel alterar o tamanho das imagens em width="50%".
 
     with st.container(): 
         st.html(f""" 

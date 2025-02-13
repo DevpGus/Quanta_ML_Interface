@@ -40,5 +40,6 @@ usernames = ["Usuário 1", "Usuario 2"]
 passwords = ["Senha hashada 1", "Senha hashada 2"]
 names = ["Empresa 1", "Empresa 2"]
 ```
+OBS: Utilize o *bcrypt* para gerar senhas hashadas e insira no campo indicado.
 
 

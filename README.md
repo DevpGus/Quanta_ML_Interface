@@ -1,8 +1,8 @@
-# Quanta_ML_Interface
+# Interface de Machine Learning da Quanta Júnior.
 Esta é uma aplicação Streamlit com o objetivo de padronizar/facilitar o desenvolvimento de interfaces pelo time de projetos da Quanta Júnior.
 Para acessar a página e visualizar o projeto, acesse: https://quanta-std-interface.streamlit.app/.
 
-# Estrutura do Projeto
+# Estrutura do Projeto.
 Este arquivo esta estrutudado da seguinte forma:
 ```bash
 Quanta_ML_Interface/
@@ -18,7 +18,7 @@ Quanta_ML_Interface/
 
 ```
 
-## Como utilizar  
+## Como utilizar?
 
 1. **Clone o repositório:**  
 ```bash

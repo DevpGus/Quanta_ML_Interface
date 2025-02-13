@@ -3,7 +3,7 @@ Esta é uma aplicação Streamlit com o objetivo de padronizar/facilitar o desen
 Para acessar a página e visualizar o projeto, acesse: https://quanta-std-interface.streamlit.app/.
 
 # Estrutura do Projeto.
-Este arquivo esta estrutudado da seguinte forma:
+Este arquivo está estruturado da seguinte forma:
 ```bash
 Quanta_ML_Interface/
 |   .gitignore

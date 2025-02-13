@@ -14,7 +14,7 @@ Quanta_ML_Interface/
 │
 └───assets/             # Notebooks python, imagens, arquivos de estilização (CSS) e Datasets
 └───pages/              # Páginas adicionais da aplicação Streamlit
-└───.streamlit/         # # Arquivo com as personalizações da página
+└───.streamlit/         # Arquivo com as personalizações da página
 
 ```
 

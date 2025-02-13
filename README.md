@@ -5,7 +5,7 @@ Para acessar a página e visualizar o projeto, acesse: https://quanta-std-interf
 # Estrutura do Projeto
 Este arquivo esta estrutudado da seguinte forma:
 ```bash
-NOME_DO_REPOSITORIO/
+Quanta_ML_Interface/
 |   .gitignore
 |   .gitattribbutes     # Usado pelo Git LFS (Large File Storage)
 │   st_app.py           # Arquivo principal da aplicação Streamlit
@@ -37,7 +37,7 @@ Lembre-se de adicionar um arquivo secrets.toml em .streamlit, com as configuraç
 ```bash
 [auth]
 usernames = ["Usuário 1", "Usuario 2"]
-passwords = ['Senha hashada 1', 'Senha hashada 2']
+passwords = ["Senha hashada 1", "Senha hashada 2"]
 names = ["Empresa 1", "Empresa 2"]
 ```
 

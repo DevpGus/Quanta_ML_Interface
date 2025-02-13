@@ -33,6 +33,10 @@ pip install -r requirements.txt
 ```bash
 streamlit run st_app.py
 ````
+Ou
+```
+python -m streamlit run st_app.py
+```
 Lembre-se de adicionar um arquivo secrets.toml em .streamlit, com as configurações abaixo para hospedar localmente.
 ```bash
 [auth]

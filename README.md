@@ -36,7 +36,7 @@ streamlit run st_app.py
 Lembre-se de adicionar um arquivo secrets.toml em .streamlit, com as configurações abaixo para hospedar localmente.
 ```bash
 [auth]
-usernames = ["Usuário 1", "Usuario 2"]
+usernames = ["Usuario 1", "Usuario 2"]
 passwords = ["Senha hashada 1", "Senha hashada 2"]
 names = ["Empresa 1", "Empresa 2"]
 ```
